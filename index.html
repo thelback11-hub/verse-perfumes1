@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VERSE | Perfumes en esencia</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0b0b0b;
+    color:white;
+}
+
+/* HEADER */
+
+header{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px 20px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.75)),
+    url("https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:70px;
+    letter-spacing:10px;
+    margin:0;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.6;
+    color:#ddd;
+}
+
+.boton{
+    display:inline-block;
+    margin-top:20px;
+    padding:15px 30px;
+    border:1px solid #d5b46b;
+    color:#d5b46b;
+    text-decoration:none;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.boton:hover{
+    background:#d5b46b;
+    color:#000;
+}
+
+/* SECCIONES */
+
+section{
+    padding:70px 20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.titulo h2{
+    font-size:38px;
+    margin:0 0 10px;
+}
+
+.titulo p{
+    color:#aaa;
+}
+
+/* RECOMENDADOR */
+
+.recomendador{
+    background:#111;
+}
+
+.pregunta{
+    margin-bottom:35px;
+}
+
+.pregunta h3{
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.opciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.opciones button{
+    background:#191919;
+    border:1px solid #555;
+    color:white;
+    padding:13px 20px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.opciones button:hover,
+.opciones button.seleccionado{
+    background:#d5b46b;
+    color:#000;
+    border-color:#d5b46b;
+}
+
+/* RESULTADO */
+
+#resultado{
+    margin-top:40px;
+}
+
+/* FILTROS */
+
+.filtros{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.filtros button{
+    background:#111;
+    color:white;
+    border:1px solid #555;
+    padding:11px 20px;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+.filtros button:hover{
+    background:#d5b46b;
+    color:#000;
+}
+
+/* PRODUCTOS */
+
+#productos{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.producto{
+    background:#151515;
+    border:1px solid #292929;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.producto img{
+    width:100%;
+    height:300px;
+    object-fit:contain;
+    background:#eee;
+    display:block;
+}
+
+.producto-info{
+    padding:20px;
+}
+
+.producto h3{
+    margin:0 0 10px;
+    font-size:23px;
+}
+
+.producto p{
+    color:#aaa;
+    min-height:42px;
+}
+
+.precio{
+    color:#d5b46b;
+    font-size:23px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.comprar{
+    width:100%;
+    padding:13px;
+    border:0;
+    border-radius:8px;
+    background:#d5b46b;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.comprar:hover{
+    opacity:.85;
+}
+
+/* CARRITO */
+
+.carrito{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#d5b46b;
+    color:#000;
+    padding:15px 22px;
+    border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:1000;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:2000;
+}
+
+.modal-contenido{
+    background:#151515;
+    width:100%;
+    max-width:500px;
+    max-height:90vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:15px;
+}
+
+.cerrar{
+    float:right;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.campo{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    background:#222;
+    border:1px solid #444;
+    color:white;
+    border-radius:7px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        min-height:75vh;
+    }
+
+    .hero h1{
+        font-size:48px;
+        letter-spacing:6px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    section{
+        padding:50px 15px;
+    }
+
+    .titulo h2{
+        font-size:30px;
+    }
+
+    .opciones{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .opciones button{
+        width:100%;
+        padding:12px 5px;
+    }
+
+    #productos{
+        grid-template-columns:1fr;
+    }
+
+    .producto img{
+        height:320px;
+    }
+
+    .carrito{
+        right:15px;
+        bottom:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="hero">
+
+<h1>VERSE</h1>
+
+<p>
+Descubre una esencia que hable por ti.
+Aromas creados para dejar huella,
+provocar miradas y quedarse en la memoria.
+</p>
+
+<a href="#recomendador" class="boton">
+DESCUBRIR VERSE
+</a>
+
+</div>
+
+</header>
+
+
+<!-- RECOMENDADOR -->
+
+<section class="recomendador" id="recomendador">
+
+<div class="titulo">
+
+<h2>Encuentra tu esencia</h2>
+
+<p>
+Responde estas preguntas y descubre cuál VERSE combina contigo.
+</p>
+
+</div>
+
+
+<div class="pregunta">
+
+<h3>1. ¿Para qué ocasión la quieres?</h3>
+
+<div class="opciones">
+
+<button onclick="seleccionarOpcion('ocasion','cita',this)">
+❤️ Cita
+</button>
+
+<button onclick="seleccionarOpcion('ocasion','fiesta',this)">
+🎉 Fiesta
+</button>
+
+<button onclick="seleccionarOpcion('ocasion','trabajo',this)">
+💼 Trabajo
+</button>
+
+<button onclick="seleccionarOpcion('ocasion','dia',this)">
+☀️ Día a día
+</button>
+
+<button onclick="seleccionarOpcion('ocasion','noche',this)">
+🌙 Noche
+</button>
+
+</div>
+
+</div>
+
+
+<div class="pregunta">
+
+<h3>2. ¿Qué aroma prefieres?</h3>
+
+<div class="opciones">
+
+<button onclick="seleccionarOpcion('aroma','fresco',this)">
+🌊 Fresco
+</button>
+
+<button onclick="seleccionarOpcion('aroma','dulce',this)">
+🍬 Dulce
+</button>
+
+<button onclick="seleccionarOpcion('aroma','floral',this)">
+🌸 Floral
+</button>
+
+<button onclick="seleccionarOpcion('aroma','amaderado',this)">
+🌳 Amaderado
+</button>
+
+<button onclick="seleccionarOpcion('aroma','intenso',this)">
+🔥 Intenso
+</button>
+
+</div>
+
+</div>
+
+
+<div class="pregunta">
+
+<h3>3. ¿Qué quieres transmitir?</h3>
+
+<div class="opciones">
+
+<button onclick="seleccionarOpcion('personalidad','discreto',this)">
+🤫 Discreto
+</button>
+
+<button onclick="seleccionarOpcion('personalidad','elegante',this)">
+✨ Elegante
+</button>
+
+<button onclick="seleccionarOpcion('personalidad','seductor',this)">
+🔥 Seductor
+</button>
+
+<button onclick="seleccionarOpcion('personalidad','llamativo',this)">
+💥 Llamativo
+</button>
+
+<button onclick="seleccionarOpcion('personalidad','exclusivo',this)">
+👑 Exclusivo
+</button>
+
+</div>
+
+</div>
+
+
+<div id="resultado"></div>
+
+</section>
+
+
+<!-- CATÁLOGO -->
+
+<section>
+
+<div class="titulo">
+
+<h2>Nuestras esencias</h2>
+
+<p>
+Encuentra la esencia que habla de ti.
+</p>
+
+</div>
+
+
+<div class="filtros">
+
+<button onclick="mostrarTodos()">
+Todos
+</button>
+
+<button onclick="mostrarMasculinos()">
+Masculinos
+</button>
+
+<button onclick="mostrarFemeninos()">
+Femeninos
+</button>
+
+</div>
+
+
+<div id="productos"></div>
+
+</section>
+
+
+<!-- CARRITO -->
+
+<div class="carrito" onclick="abrirCarrito()">
+
+🛒 Carrito
+<span id="cantidadCarrito">0</span>
+
+</div>
+
+
+<!-- MODAL CARRITO -->
+
+<div class="modal" id="modalCarrito">
+
+<div class="modal-contenido">
+
+<span class="cerrar" onclick="cerrarCarrito()">×</span>
+
+<h2>Tu pedido</h2>
+
+<div id="listaCarrito"></div>
+
+<h3 id="totalCarrito"></h3>
+
+<input
+class="campo"
+id="nombreCliente"
+placeholder="Tu nombre"
+>
+
+<input
+class="campo"
+id="direccionCliente"
+placeholder="Dirección de entrega"
+>
+
+<select class="campo" id="pagoCliente">
+
+<option value="">
+Forma de pago
+</option>
+
+<option value="Efectivo">
+Efectivo
+</option>
+
+<option value="Nequi">
+Nequi
+</option>
+
+<option value="Bancolombia">
+Bancolombia
+</option>
+
+</select>
+
+<button
+class="comprar"
+onclick="enviarPedidoWhatsApp()"
+>
+
+PEDIR POR WHATSAPP
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+const productos = [
+
+{
+nombre:"El Baja Pantys",
+genero:"Masculino",
+descripcion:"Intenso, seductor y amaderado.",
+precio:30000,
+scores:{
+fresco:1,
+dulce:2,
+floral:1,
+amaderado:5,
+intenso:5,
+discreto:1,
+elegante:3,
+seductor:5,
+llamativo:5,
+exclusivo:4
+}
+},
+
+{
+nombre:"El Fresquito",
+genero:"Masculino",
+descripcion:"Fresco, cítrico y marino.",
+precio:30000,
+scores:{
+fresco:5,
+dulce:1,
+floral:1,
+amaderado:3,
+intenso:2,
+discreto:4,
+elegante:3,
+seductor:3,
+llamativo:2,
+exclusivo:3
+}
+},
+
+{
+nombre:"La Que Manda",
+genero:"Femenino",
+descripcion:"Sensual, elegante y floral.",
+precio:30000,
+scores:{
+fresco:3,
+dulce:2,
+floral:5,
+amaderado:3,
+intenso:4,
+discreto:2,
+elegante:5,
+seductor:5,
+llamativo:4,
+exclusivo:5
+}
+}
+
+];
+
+
+/* =========================
+   ESTADO
+========================= */
+
+let respuestas = {
+ocasion:"",
+aroma:"",
+personalidad:""
+};
+
+let carrito = [];
+
+
+/* =========================
+   IMÁGENES
+========================= */
+
+function crearImagenProducto(nombre,genero){
+
+let fondo = genero === "Femenino"
+? "#eadfdc"
+: "#d9d6cf";
+
+let vidrio = genero === "Femenino"
+? "#5a2838"
+: "#171717";
+
+let svg = `
+
+<svg xmlns="http://www.w3.org/2000/svg"
+width="600"
+height="600"
+viewBox="0 0 600 600">
+
+<rect width="600"
+height="600"
+fill="${fondo}"/>
+
+<rect x="200"
+y="180"
+width="200"
+height="280"
+rx="25"
+fill="${vidrio}"/>
+
+<rect x="250"
+y="120"
+width="100"
+height="65"
+rx="8"
+fill="#111"/>
+
+<rect x="220"
+y="275"
+width="160"
+height="100"
+fill="#f4f0e6"/>
+
+<text x="300"
+y="315"
+text-anchor="middle"
+font-family="Arial"
+font-size="25"
+font-weight="bold"
+fill="#111">
+
+VERSE
+
+</text>
+
+<text x="300"
+y="350"
+text-anchor="middle"
+font-family="Arial"
+font-size="16"
+fill="#111">
+
+${nombre}
+
+</text>
+
+</svg>
+`;
+
+return "data:image/svg+xml;charset=UTF-8," +
+encodeURIComponent(svg);
+
+}
+
+
+/* =========================
+   RECOMENDADOR
+========================= */
+
+function seleccionarOpcion(tipo,valor,boton){
+
+respuestas[tipo]=valor;
+
+const pregunta=boton.closest(".pregunta");
+
+pregunta
+.querySelectorAll("button")
+.forEach(boton=>{
+boton.classList.remove("seleccionado");
+});
+
+boton.classList.add("seleccionado");
+
+recomendar();
+
+}
+
+
+function recomendar(){
+
+let elecciones=[];
+
+if(respuestas.ocasion)
+elecciones.push(respuestas.ocasion);
+
+if(respuestas.aroma)
+elecciones.push(respuestas.aroma);
+
+if(respuestas.personalidad)
+elecciones.push(respuestas.personalidad);
+
+if(elecciones.length===0)
+return;
+
+
+let resultados=productos.map(producto=>{
+
+let puntos=0;
+
+elecciones.forEach(eleccion=>{
+
+puntos += producto.scores[eleccion] || 0;
+
+});
+
+return {
+producto,
+puntos
+};
+
+});
+
+
+resultados.sort((a,b)=>b.puntos-a.puntos);
+
+let mejor=resultados[0].producto;
+
+
+document.getElementById("resultado").innerHTML=`
+
+<div class="producto">
+
+<img src="${crearImagenProducto(
+mejor.nombre,
+mejor.genero
+)}">
+
+<div class="producto-info">
+
+<h3>✨ Te recomendamos</h3>
+
+<h3>${mejor.nombre}</h3>
+
+<p>${mejor.descripcion}</p>
+
+<div class="precio">
+$${formatearPrecio(mejor.precio)}
+</div>
+
+<button
+class="comprar"
+onclick="agregarAlCarrito('${mejor.nombre}')"
+>
+
+AGREGAR AL CARRITO
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   CATÁLOGO
+========================= */
+
+function mostrar(lista){
+
+const contenedor=
+document.getElementById("productos");
+
+contenedor.innerHTML="";
+
+
+lista.forEach(producto=>{
+
+const tarjeta=
+document.createElement("div");
+
+tarjeta.className="producto";
+
+
+tarjeta.innerHTML=`
+
+<img
+src="${crearImagenProducto(
+producto.nombre,
+producto.genero
+)}"
+alt="${producto.nombre}"
+>
+
+<div class="producto-info">
+
+<h3>${producto.nombre}</h3>
+
+<p>${producto.descripcion}</p>
+
+<div class="precio">
+$${formatearPrecio(producto.precio)}
+</div>
+
+<button
+class="comprar"
+onclick="agregarAlCarrito('${producto.nombre}')"
+>
+
+AGREGAR AL CARRITO
+
+</button>
+
+</div>
+
+`;
+
+
+contenedor.appendChild(tarjeta);
+
+});
+
+}
+
+
+function mostrarTodos(){
+
+mostrar(productos);
+
+}
+
+
+function mostrarMasculinos(){
+
+mostrar(
+productos.filter(
+producto=>producto.genero==="Masculino"
+)
+);
+
+}
+
+
+function mostrarFemeninos(){
+
+mostrar(
+productos.filter(
+producto=>producto.genero==="Femenino"
+)
+);
+
+}
+
+
+/* =========================
+   CARRITO
+========================= */
+
+function agregarAlCarrito(nombre){
+
+const producto=
+productos.find(
+p=>p.nombre===nombre
+);
+
+if(!producto)
+return;
+
+carrito.push(producto);
+
+actualizarCarrito();
+
+alert(
+producto.nombre+
+" fue agregado al carrito."
+);
+
+}
+
+
+function actualizarCarrito(){
+
+document.getElementById(
+"cantidadCarrito"
+).textContent=carrito.length;
+
+}
+
+
+function abrirCarrito(){
+
+const modal=
+document.getElementById("modalCarrito");
+
+modal.style.display="flex";
+
+mostrarCarrito();
+
+}
+
+
+function cerrarCarrito(){
+
+document.getElementById(
+"modalCarrito"
+).style.display="none";
+
+}
+
+
+function mostrarCarrito(){
+
+const lista=
+document.getElementById("listaCarrito");
+
+const total=
+document.getElementById("totalCarrito");
+
+lista.innerHTML="";
+
+let suma=0;
+
+
+if(carrito.length===0){
+
+lista.innerHTML=
+"<p>Tu carrito está vacío.</p>";
+
+total.textContent="";
+
+return;
+
+}
+
+
+carrito.forEach((producto,index)=>{
+
+suma+=producto.precio;
+
+lista.innerHTML+=`
+
+<p>
+
+${index+1}.
+${producto.nombre}
+-
+$${formatearPrecio(producto.precio)}
+
+</p>
+
+`;
+
+});
+
+
+total.textContent=
+"Total: $"+
+formatearPrecio(suma);
+
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+function enviarPedidoWhatsApp(){
+
+if(carrito.length===0){
+
+alert("Tu carrito está vacío.");
+
+return;
+
+}
+
+
+const nombre=
+document.getElementById(
+"nombreCliente"
+).value.trim();
+
+const direccion=
+document.getElementById(
+"direccionCliente"
+).value.trim();
+
+const pago=
+document.getElementById(
+"pagoCliente"
+).value;
+
+
+if(!nombre){
+
+alert("Escribe tu nombre.");
+
+return;
+
+}
+
+if(!direccion){
+
+alert("Escribe tu dirección.");
+
+return;
+
+}
+
+if(!pago){
+
+alert("Selecciona una forma de pago.");
+
+return;
+
+}
+
+
+let mensaje=
+"Hola VERSE 👋%0A%0A";
+
+mensaje+=
+"*Nuevo pedido*%0A%0A";
+
+mensaje+=
+"*Cliente:* "+
+encodeURIComponent(nombre)+
+"%0A";
+
+mensaje+=
+"*Dirección:* "+
+encodeURIComponent(direccion)+
+"%0A";
+
+mensaje+=
+"*Forma de pago:* "+
+encodeURIComponent(pago)+
+"%0A%0A";
+
+mensaje+="*Productos:*%0A";
+
+
+let total=0;
+
+
+carrito.forEach(producto=>{
+
+mensaje+=
+"• "+
+encodeURIComponent(producto.nombre)+
+" - $"+
+producto.precio+
+"%0A";
+
+total+=producto.precio;
+
+});
+
+
+mensaje+=
+"%0A*Total:* $"+
+total;
+
+
+const telefono=
+"573169031445";
+
+
+window.open(
+"https://wa.me/"+
+telefono+
+"?text="+
+mensaje,
+"_blank"
+);
+
+}
+
+
+/* =========================
+   PRECIO
+========================= */
+
+function formatearPrecio(numero){
+
+return numero.toLocaleString(
+"es-CO"
+);
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+productos.forEach(producto=>{
+
+producto.imagen=
+crearImagenProducto(
+producto.nombre,
+producto.genero
+);
+
+});
+
+
+mostrarTodos();
+
+</script>
+
+</body>
+</html>
