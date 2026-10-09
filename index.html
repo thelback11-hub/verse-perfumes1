@@ -1,377 +1,700 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>VERSE | Perfumes en esencia</title>
 
 <style>
-*{
-    box-sizing:border-box;
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#0b0b0b;
-    color:white;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #0b0b0b;
+    color: white;
 }
 
-/* HEADER */
 
-header{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:30px 20px;
+/* =========================
+   HEADER
+========================= */
 
+header {
+    min-height: 90vh;
     background:
-    linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.75)),
-    url("https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1600&q=80");
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.8)
+        ),
+        url("https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=1800&q=80");
 
-    background-size:cover;
-    background-position:center;
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    position: relative;
+
+    padding: 40px 20px;
 }
 
-.hero{
-    max-width:800px;
+header h1 {
+    font-size: clamp(55px, 10vw, 110px);
+    letter-spacing: 22px;
+    margin: 0;
+    font-weight: 700;
 }
 
-.hero h1{
-    font-size:70px;
-    letter-spacing:10px;
-    margin:0;
+header p {
+    font-size: 18px;
+    letter-spacing: 5px;
+    color: #d5b46b;
+    margin-top: 10px;
 }
 
-.hero p{
-    font-size:20px;
-    line-height:1.6;
-    color:#ddd;
+.hero-text {
+    max-width: 650px;
+    color: #ddd;
+    line-height: 1.6;
+    margin: 20px auto;
 }
 
-.boton{
-    display:inline-block;
-    margin-top:20px;
-    padding:15px 30px;
-    border:1px solid #d5b46b;
-    color:#d5b46b;
-    text-decoration:none;
-    border-radius:30px;
-    transition:.3s;
+.hero-boton {
+    margin-top: 20px;
+    padding: 15px 35px;
+    background: #d5b46b;
+    color: #111;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.boton:hover{
-    background:#d5b46b;
-    color:#000;
+.hero-boton:hover {
+    background: white;
 }
 
-/* SECCIONES */
 
-section{
-    padding:70px 20px;
-    max-width:1200px;
-    margin:auto;
+/* =========================
+   CARRITO HEADER
+========================= */
+
+.boton-carrito {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+
+    padding: 12px 20px;
+
+    background: rgba(255,255,255,0.12);
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
 }
 
-.titulo{
-    text-align:center;
-    margin-bottom:45px;
+.boton-carrito:hover {
+    background: #d5b46b;
+    color: #111;
 }
 
-.titulo h2{
-    font-size:38px;
-    margin:0 0 10px;
+
+/* =========================
+   TITULOS
+========================= */
+
+.titulo-seccion {
+    text-align: center;
+    padding: 80px 20px 30px;
 }
 
-.titulo p{
-    color:#aaa;
+.titulo-seccion h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
 }
 
-/* RECOMENDADOR */
-
-.recomendador{
-    background:#111;
+.titulo-seccion p {
+    color: #999;
 }
 
-.pregunta{
-    margin-bottom:35px;
+
+/* =========================
+   RECOMENDADOR
+========================= */
+
+.recomendador {
+    background: #111;
+    padding: 80px 20px;
+    text-align: center;
 }
 
-.pregunta h3{
-    font-size:20px;
-    margin-bottom:15px;
+.recomendador h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
 }
 
-.opciones{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+.recomendador-subtitulo {
+    color: #aaa;
+    margin-bottom: 45px;
 }
 
-.opciones button{
-    background:#191919;
-    border:1px solid #555;
-    color:white;
-    padding:13px 20px;
-    border-radius:25px;
-    cursor:pointer;
-    transition:.2s;
+.pregunta {
+    max-width: 750px;
+    margin: 35px auto;
 }
 
-.opciones button:hover,
-.opciones button.seleccionado{
-    background:#d5b46b;
-    color:#000;
-    border-color:#d5b46b;
+.pregunta h3 {
+    margin-bottom: 18px;
 }
 
-/* RESULTADO */
-
-#resultado{
-    margin-top:40px;
+.opciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* FILTROS */
-
-.filtros{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:35px;
+.opciones button {
+    background: transparent;
+    color: white;
+    border: 1px solid #444;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
 }
 
-.filtros button{
-    background:#111;
-    color:white;
-    border:1px solid #555;
-    padding:11px 20px;
-    border-radius:25px;
-    cursor:pointer;
+.opciones button:hover {
+    border-color: #d5b46b;
 }
 
-.filtros button:hover{
-    background:#d5b46b;
-    color:#000;
+.opciones button.seleccionado {
+    background: #d5b46b;
+    color: #111;
+    border-color: #d5b46b;
+    box-shadow: 0 0 0 2px rgba(213,180,107,.25);
+    transform: translateY(-1px);
 }
 
-/* PRODUCTOS */
-
-#productos{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+.boton-recomendar {
+    margin-top: 25px;
+    padding: 16px 35px;
+    border: none;
+    border-radius: 30px;
+    background: #d5b46b;
+    color: #111;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.producto{
-    background:#151515;
-    border:1px solid #292929;
-    border-radius:15px;
-    overflow:hidden;
+.resultado {
+    display: none;
+    max-width: 520px;
+    margin: 45px auto 0;
+    padding: 35px;
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 20px;
 }
 
-.producto img{
-    width:100%;
-    height:300px;
-    object-fit:contain;
-    background:#eee;
-    display:block;
+.resultado .emoji {
+    font-size: 45px;
 }
 
-.producto-info{
-    padding:20px;
+.resultado h3 {
+    color: #d5b46b;
+    font-size: 30px;
 }
 
-.producto h3{
-    margin:0 0 10px;
-    font-size:23px;
+.resultado .precio {
+    color: white;
 }
 
-.producto p{
-    color:#aaa;
-    min-height:42px;
+
+/* =========================
+   CATALOGO
+========================= */
+
+.catalogo {
+    background: #f4f1eb;
+    color: #111;
+    padding-bottom: 100px;
 }
 
-.precio{
-    color:#d5b46b;
-    font-size:23px;
-    font-weight:bold;
-    margin:15px 0;
+.catalogo .titulo-seccion {
+    padding-top: 80px;
 }
 
-.comprar{
-    width:100%;
-    padding:13px;
-    border:0;
-    border-radius:8px;
-    background:#d5b46b;
-    color:#000;
-    font-weight:bold;
-    cursor:pointer;
+.catalogo .titulo-seccion p {
+    color: #777;
 }
 
-.comprar:hover{
-    opacity:.85;
+.filtros {
+    text-align: center;
+    margin: 25px 0 45px;
 }
 
-/* CARRITO */
-
-.carrito{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#d5b46b;
-    color:#000;
-    padding:15px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    cursor:pointer;
-    z-index:1000;
+.filtros button {
+    padding: 11px 22px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background: white;
+    cursor: pointer;
 }
 
-/* MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.8);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:2000;
+.filtros button:hover {
+    background: #111;
+    color: white;
 }
 
-.modal-contenido{
-    background:#151515;
-    width:100%;
-    max-width:500px;
-    max-height:90vh;
-    overflow:auto;
-    padding:25px;
-    border-radius:15px;
+
+/* =========================================================
+   🟡 ADMINISTRACIÓN DE PERFUMES VERSE
+   =========================================================
+
+   PARA AGREGAR O CAMBIAR PERFUMES, EDITA SOLO ESTA SECCIÓN.
+
+   Puedes cambiar estos datos de cada perfume:
+   • nombre: nombre que verá el cliente
+   • genero: escribe exactamente "Masculino" o "Femenino"
+   • descripcion: descripción corta
+   • precio: escribe el precio sin puntos (30000 = $30.000)
+   • fresco, dulce, floral, amaderado, intenso, seductor:
+     valores de 1 a 5 para ayudar al recomendador.
+
+   PARA CAMBIAR EL PRECIO:
+   precio: 30000  →  precio: 35000
+
+   PARA AGREGAR OTRO PERFUME:
+   1. Copia un bloque completo que empiece con { y termine con },
+      incluyendo la coma final si hay otro bloque después.
+   2. Pégalo antes de ];
+   3. Cambia nombre, género, descripción, precio y puntuaciones.
+
+   NO CAMBIES LAS IMÁGENES: se generan automáticamente con el
+   nombre y el género que escribas.
+   ========================================================= */
+
+.productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 20px;
 }
 
-.cerrar{
-    float:right;
-    font-size:25px;
-    cursor:pointer;
+.producto {
+    background: white;
+    width: 280px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+    transition: 0.3s;
 }
 
-.campo{
-    width:100%;
-    padding:13px;
-    margin:8px 0;
-    background:#222;
-    border:1px solid #444;
-    color:white;
-    border-radius:7px;
+.producto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
 }
 
-/* MOBILE */
+.producto img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+}
 
-@media(max-width:768px){
+.contenido {
+    padding: 22px;
+}
 
-    header{
-        min-height:75vh;
+.producto h3 {
+    font-size: 23px;
+    margin-top: 0;
+}
+
+.genero {
+    color: #888;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.descripcion {
+    color: #666;
+    line-height: 1.5;
+}
+
+.precio {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.producto button {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.producto button:hover {
+    background: #d5b46b;
+    color: #111;
+}
+
+
+/* =========================
+   FICHA
+========================= */
+
+.ficha {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.8);
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 100;
+}
+
+.ficha-contenido {
+    background: #fff;
+    color: #111;
+
+    width: 90%;
+    max-width: 800px;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    display: flex;
+    gap: 30px;
+
+    position: relative;
+}
+
+.ficha img {
+    width: 320px;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.ficha-info {
+    flex: 1;
+    padding-top: 30px;
+}
+
+.ficha-info h2 {
+    font-size: 34px;
+}
+
+.ficha-info .precio {
+    color: #111;
+}
+
+.cerrar {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+
+    background: transparent;
+    color: #111;
+
+    border: none;
+
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   CARRITO
+========================= */
+
+.carrito {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.75);
+
+    justify-content: flex-end;
+
+    z-index: 200;
+}
+
+.carrito-contenido {
+    background: #fff;
+    color: #111;
+
+    width: 430px;
+    max-width: 92%;
+
+    height: 100%;
+
+    padding: 30px;
+
+    overflow-y: auto;
+}
+
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carrito-header button {
+    background: transparent;
+    color: #111;
+    font-size: 25px;
+}
+
+.producto-carrito {
+    border-bottom: 1px solid #ddd;
+    padding: 18px 0;
+}
+
+.producto-carrito h3 {
+    margin: 0 0 8px;
+}
+
+.cantidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cantidad button {
+    background: #111;
+    color: white;
+    padding: 6px 12px;
+}
+
+.total {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+
+/* =========================
+   DATOS CLIENTE
+========================= */
+
+#datosCliente {
+    display: none;
+    margin-top: 20px;
+}
+
+#datosCliente input,
+#datosCliente select {
+    width: 100%;
+    padding: 14px;
+
+    margin: 7px 0;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+#datosCliente button {
+    width: 100%;
+    background: #25D366;
+    color: white;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #050505;
+    text-align: center;
+    padding: 50px 20px;
+    color: #777;
+}
+
+footer strong {
+    color: #d5b46b;
+    letter-spacing: 5px;
+}
+
+
+/* =========================
+   MOVIL
+========================= */
+
+@media (max-width: 700px) {
+    .productos {
+        padding: 0 14px;
+        gap: 20px;
     }
 
-    .hero h1{
-        font-size:48px;
-        letter-spacing:6px;
+    .producto {
+        width: 100%;
+        max-width: 360px;
     }
 
-    .hero p{
-        font-size:16px;
+    .producto img {
+        height: 360px;
+        object-fit: contain;
+        background: #f4f1eb;
+        display: block;
     }
 
-    section{
-        padding:50px 15px;
+
+
+    header {
+        min-height: 80vh;
     }
 
-    .titulo h2{
-        font-size:30px;
+    header h1 {
+        letter-spacing: 10px;
     }
 
-    .opciones{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
+    .boton-carrito {
+        position: absolute;
+        top: 20px;
+        right: 15px;
     }
 
-    .opciones button{
-        width:100%;
-        padding:12px 5px;
+    .recomendador h2 {
+        font-size: 30px;
     }
 
-    #productos{
-        grid-template-columns:1fr;
+    .producto {
+        width: 100%;
+        max-width: 350px;
     }
 
-    .producto img{
-        height:320px;
+    .ficha-contenido {
+        flex-direction: column;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
-    .carrito{
-        right:15px;
-        bottom:15px;
+    .ficha img {
+        width: 100%;
+        height: 300px;
     }
+
+    .ficha-info {
+        padding-top: 5px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <header>
 
-<div class="hero">
+<button
+class="boton-carrito"
+onclick="abrirCarrito()">
+
+🛒 Carrito
+(<span id="cantidadCarrito">0</span>)
+
+</button>
+
 
 <h1>VERSE</h1>
 
-<p>
+<p>PERFUMES EN ESENCIA</p>
+
+<div class="hero-text">
+
 Descubre una esencia que hable por ti.
 Aromas creados para dejar huella,
 provocar miradas y quedarse en la memoria.
-</p>
-
-<a href="#recomendador" class="boton">
-DESCUBRIR VERSE
-</a>
 
 </div>
+
+
+<button
+class="hero-boton"
+onclick="document.getElementById('catalogo').scrollIntoView()">
+
+DESCUBRIR VERSE
+
+</button>
 
 </header>
 
 
-<!-- RECOMENDADOR -->
 
-<section class="recomendador" id="recomendador">
+<!-- =========================
+     RECOMENDADOR
+========================= -->
 
-<div class="titulo">
+<section class="recomendador">
 
-<h2>Encuentra tu esencia</h2>
+<h2>✨ Descubre tu aroma</h2>
 
-<p>
-Responde estas preguntas y descubre cuál VERSE combina contigo.
+<p class="recomendador-subtitulo">
+Responde tres preguntas y encuentra el VERSE que va contigo.
 </p>
-
-</div>
 
 
 <div class="pregunta">
 
-<h3>1. ¿Para qué ocasión la quieres?</h3>
+<h3>
+1. ¿Para qué ocasión lo quieres?
+</h3>
 
 <div class="opciones">
 
 <button onclick="seleccionarOpcion('ocasion','cita',this)">
-❤️ Cita
+💘 Cita
 </button>
 
 <button onclick="seleccionarOpcion('ocasion','fiesta',this)">
@@ -395,14 +718,17 @@ Responde estas preguntas y descubre cuál VERSE combina contigo.
 </div>
 
 
+
 <div class="pregunta">
 
-<h3>2. ¿Qué aroma prefieres?</h3>
+<h3>
+2. ¿Qué tipo de aroma te gusta?
+</h3>
 
 <div class="opciones">
 
 <button onclick="seleccionarOpcion('aroma','fresco',this)">
-🌊 Fresco
+🍋 Fresco
 </button>
 
 <button onclick="seleccionarOpcion('aroma','dulce',this)">
@@ -410,7 +736,7 @@ Responde estas preguntas y descubre cuál VERSE combina contigo.
 </button>
 
 <button onclick="seleccionarOpcion('aroma','floral',this)">
-🌸 Floral
+🌹 Floral
 </button>
 
 <button onclick="seleccionarOpcion('aroma','amaderado',this)">
@@ -426,30 +752,33 @@ Responde estas preguntas y descubre cuál VERSE combina contigo.
 </div>
 
 
+
 <div class="pregunta">
 
-<h3>3. ¿Qué quieres transmitir?</h3>
+<h3>
+3. ¿Qué quieres transmitir?
+</h3>
 
 <div class="opciones">
 
 <button onclick="seleccionarOpcion('personalidad','discreto',this)">
-🤫 Discreto
+😌 Discreto
 </button>
 
 <button onclick="seleccionarOpcion('personalidad','elegante',this)">
-✨ Elegante
+🕴️ Elegante
 </button>
 
 <button onclick="seleccionarOpcion('personalidad','seductor',this)">
-🔥 Seductor
+😈 Seductor
 </button>
 
 <button onclick="seleccionarOpcion('personalidad','llamativo',this)">
-💥 Llamativo
+🔥 Llamativo
 </button>
 
 <button onclick="seleccionarOpcion('personalidad','exclusivo',this)">
-👑 Exclusivo
+💎 Exclusivo
 </button>
 
 </div>
@@ -457,16 +786,64 @@ Responde estas preguntas y descubre cuál VERSE combina contigo.
 </div>
 
 
-<div id="resultado"></div>
+<button
+class="boton-recomendar"
+onclick="recomendarPerfume()">
+
+✨ DESCUBRIR MI VERSE
+
+</button>
+
+
+
+<div
+class="resultado"
+id="resultado">
+
+<div class="emoji">
+✨
+</div>
+
+<p>
+Tu VERSE ideal es:
+</p>
+
+<h3 id="resultadoNombre"></h3>
+
+<p id="resultadoDescripcion"></p>
+
+<p
+class="precio"
+id="resultadoPrecio">
+</p>
+
+<button onclick="agregarRecomendado()">
+
+🛒 Agregar al carrito
+
+</button>
+
+<button onclick="verRecomendado()">
+
+👀 Ver perfume
+
+</button>
+
+</div>
 
 </section>
 
 
-<!-- CATÁLOGO -->
 
-<section>
+<!-- =========================
+     CATALOGO
+========================= -->
 
-<div class="titulo">
+<section
+class="catalogo"
+id="catalogo">
+
+<div class="titulo-seccion">
 
 <h2>Nuestras esencias</h2>
 
@@ -494,48 +871,128 @@ Femeninos
 </div>
 
 
-<div id="productos"></div>
+<div
+class="productos"
+id="productos">
+</div>
 
 </section>
 
 
-<!-- CARRITO -->
 
-<div class="carrito" onclick="abrirCarrito()">
+<!-- =========================
+     FICHA
+========================= -->
 
-🛒 Carrito
-<span id="cantidadCarrito">0</span>
+<div
+class="ficha"
+id="ficha">
+
+<div class="ficha-contenido">
+
+<button
+class="cerrar"
+onclick="cerrarFicha()">
+
+✕
+
+</button>
+
+<img
+id="fichaImagen"
+src=""
+alt="Perfume">
+
+
+<div class="ficha-info">
+
+<h2 id="fichaNombre"></h2>
+
+<p id="fichaGenero"></p>
+
+<p id="fichaDescripcion"></p>
+
+<p
+class="precio"
+id="fichaPrecio">
+</p>
+
+<button onclick="agregarCarrito()">
+
+🛒 Agregar al carrito
+
+</button>
+
+</div>
+
+</div>
 
 </div>
 
 
-<!-- MODAL CARRITO -->
 
-<div class="modal" id="modalCarrito">
+<!-- =========================
+     CARRITO
+========================= -->
 
-<div class="modal-contenido">
+<div
+class="carrito"
+id="carrito">
 
-<span class="cerrar" onclick="cerrarCarrito()">×</span>
+<div class="carrito-contenido">
 
-<h2>Tu pedido</h2>
+<div class="carrito-header">
 
-<div id="listaCarrito"></div>
+<h2>
+🛒 Tu carrito
+</h2>
 
-<h3 id="totalCarrito"></h3>
+<button onclick="cerrarCarrito()">
+✕
+</button>
+
+</div>
+
+
+<div id="productosCarrito"></div>
+
+
+<div
+class="total"
+id="totalCarrito">
+
+Total: $0
+
+</div>
+
+
+<button onclick="pedirPorWhatsApp()">
+
+📲 Pedir por WhatsApp
+
+</button>
+
+
+<div id="datosCliente">
+
+<h3>
+Datos para el pedido
+</h3>
+
 
 <input
-class="campo"
 id="nombreCliente"
-placeholder="Tu nombre"
->
+type="text"
+placeholder="Tu nombre">
+
 
 <input
-class="campo"
 id="direccionCliente"
-placeholder="Dirección de entrega"
->
+type="text"
+placeholder="Tu dirección">
 
-<select class="campo" id="pagoCliente">
+
+<select id="pagoCliente">
 
 <option value="">
 Forma de pago
@@ -555,12 +1012,10 @@ Bancolombia
 
 </select>
 
-<button
-class="comprar"
-onclick="enviarPedidoWhatsApp()"
->
 
-PEDIR POR WHATSAPP
+<button onclick="enviarPedidoWhatsApp()">
+
+📲 Enviar pedido
 
 </button>
 
@@ -568,8 +1023,107 @@ PEDIR POR WHATSAPP
 
 </div>
 
+</div>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<p>
+<strong>VERSE</strong>
+</p>
+
+<p>
+Perfumes en esencia
+</p>
+
+<p>
+© 2026 VERSE. Todos los derechos reservados.
+</p>
+
+</footer>
+
+
 
 <script>
+
+
+/* =========================
+   IMÁGENES INTERNAS DE VERSE
+   No dependen de internet.
+========================= */
+
+function crearImagenProducto(nombre, genero) {
+
+    const fondo =
+        genero === "Femenino"
+            ? "#eadfdc"
+            : "#d9d6cf";
+
+    const vidrio =
+        genero === "Femenino"
+            ? "#5a2838"
+            : "#171717";
+
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="700" height="820" viewBox="0 0 700 820">
+            <defs>
+                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="${fondo}"/>
+                    <stop offset="100%" stop-color="#f8f6f1"/>
+                </linearGradient>
+                <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="${vidrio}"/>
+                    <stop offset="45%" stop-color="#303030"/>
+                    <stop offset="100%" stop-color="#090909"/>
+                </linearGradient>
+                <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#9d762d"/>
+                    <stop offset="45%" stop-color="#f0d28a"/>
+                    <stop offset="100%" stop-color="#8b6423"/>
+                </linearGradient>
+                <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feDropShadow dx="0" dy="24" stdDeviation="20" flood-opacity=".28"/>
+                </filter>
+            </defs>
+
+            <rect width="700" height="820" fill="url(#bg)"/>
+            <ellipse cx="350" cy="710" rx="190" ry="30" fill="#000" opacity=".16"/>
+
+            <g filter="url(#shadow)">
+                <rect x="275" y="105" width="150" height="85" rx="8" fill="url(#gold)"/>
+                <rect x="290" y="82" width="120" height="45" rx="5" fill="#171717"/>
+                <rect x="215" y="175" width="270" height="490" rx="28" fill="url(#glass)" stroke="#c9a65b" stroke-width="5"/>
+                <rect x="235" y="200" width="230" height="440" rx="18" fill="none" stroke="#ffffff" stroke-opacity=".10" stroke-width="3"/>
+
+                <text x="350" y="330" text-anchor="middle"
+                      font-family="Arial, sans-serif" font-size="48"
+                      font-weight="700" letter-spacing="10" fill="#f0d28a">VERSE</text>
+
+                <line x1="275" y1="365" x2="425" y2="365"
+                      stroke="#c9a65b" stroke-width="2"/>
+
+                <text x="350" y="430" text-anchor="middle"
+                      font-family="Arial, sans-serif" font-size="25"
+                      font-weight="700" fill="#ffffff">${nombre}</text>
+
+                <text x="350" y="470" text-anchor="middle"
+                      font-family="Arial, sans-serif" font-size="14"
+                      letter-spacing="4" fill="#c9a65b">EAU DE PARFUM</text>
+
+                <text x="350" y="575" text-anchor="middle"
+                      font-family="Arial, sans-serif" font-size="12"
+                      letter-spacing="3" fill="#ffffff" opacity=".75">PERFUMES EN ESENCIA</text>
+            </g>
+        </svg>
+    `;
+
+    return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
 
 /* =========================
    PRODUCTOS
@@ -578,343 +1132,514 @@ PEDIR POR WHATSAPP
 const productos = [
 
 {
-nombre:"El Baja Pantys",
-genero:"Masculino",
-descripcion:"Intenso, seductor y amaderado.",
-precio:30000,
-scores:{
-fresco:1,
-dulce:2,
-floral:1,
-amaderado:5,
-intenso:5,
-discreto:1,
-elegante:3,
-seductor:5,
-llamativo:5,
-exclusivo:4
-}
+nombre: "El Baja Pantys",
+genero: "Masculino",
+descripcion: "Intenso, seductor y amaderado.",
+precio: 30000,
+fresco: 1,
+dulce: 2,
+amaderado: 5,
+intenso: 5,
+seductor: 5
 },
 
 {
-nombre:"El Fresquito",
-genero:"Masculino",
-descripcion:"Fresco, cítrico y marino.",
-precio:30000,
-scores:{
-fresco:5,
-dulce:1,
-floral:1,
-amaderado:3,
-intenso:2,
-discreto:4,
-elegante:3,
-seductor:3,
-llamativo:2,
-exclusivo:3
-}
+nombre: "El Fresquito",
+genero: "Masculino",
+descripcion: "Fresco, cítrico y marino.",
+precio: 30000,
+fresco: 5,
+dulce: 1,
+amaderado: 3,
+intenso: 2,
+seductor: 3
 },
 
 {
-nombre:"La Que Manda",
-genero:"Femenino",
-descripcion:"Sensual, elegante y floral.",
-precio:30000,
-scores:{
-fresco:3,
-dulce:2,
-floral:5,
-amaderado:3,
-intenso:4,
-discreto:2,
-elegante:5,
-seductor:5,
-llamativo:4,
-exclusivo:5
-}
+nombre: "La Que Manda",
+genero: "Femenino",
+descripcion: "Sensual, elegante y floral.",
+precio: 30000,
+fresco: 3,
+dulce: 2,
+floral: 5,
+amaderado: 3,
+intenso: 4,
+seductor: 5
 }
 
 ];
 
 
-/* =========================
-   ESTADO
-========================= */
-
-let respuestas = {
-ocasion:"",
-aroma:"",
-personalidad:""
-};
-
 let carrito = [];
 
+let perfumeSeleccionado = null;
 
-/* =========================
-   IMÁGENES
-========================= */
+let perfumeRecomendado = null;
 
-function crearImagenProducto(nombre,genero){
 
-let fondo = genero === "Femenino"
-? "#eadfdc"
-: "#d9d6cf";
+let respuestas = {
 
-let vidrio = genero === "Femenino"
-? "#5a2838"
-: "#171717";
+ocasion: "",
 
-let svg = `
+aroma: "",
 
-<svg xmlns="http://www.w3.org/2000/svg"
-width="600"
-height="600"
-viewBox="0 0 600 600">
+personalidad: ""
 
-<rect width="600"
-height="600"
-fill="${fondo}"/>
-
-<rect x="200"
-y="180"
-width="200"
-height="280"
-rx="25"
-fill="${vidrio}"/>
-
-<rect x="250"
-y="120"
-width="100"
-height="65"
-rx="8"
-fill="#111"/>
-
-<rect x="220"
-y="275"
-width="160"
-height="100"
-fill="#f4f0e6"/>
-
-<text x="300"
-y="315"
-text-anchor="middle"
-font-family="Arial"
-font-size="25"
-font-weight="bold"
-fill="#111">
-
-VERSE
-
-</text>
-
-<text x="300"
-y="350"
-text-anchor="middle"
-font-family="Arial"
-font-size="16"
-fill="#111">
-
-${nombre}
-
-</text>
-
-</svg>
-`;
-
-return "data:image/svg+xml;charset=UTF-8," +
-encodeURIComponent(svg);
-
-}
+};
 
 
 /* =========================
    RECOMENDADOR
 ========================= */
 
-function seleccionarOpcion(tipo,valor,boton){
+function seleccionarOpcion(tipo, valor, boton) {
 
-respuestas[tipo]=valor;
+respuestas[tipo] = valor;
 
-const pregunta=boton.closest(".pregunta");
 
-pregunta
-.querySelectorAll("button")
-.forEach(boton=>{
-boton.classList.remove("seleccionado");
+const botones =
+boton.parentElement.querySelectorAll("button");
+
+
+botones.forEach(b => {
+
+b.classList.remove("seleccionado");
+
 });
 
-boton.classList.add("seleccionado");
 
-recomendar();
+boton.classList.add("seleccionado");
 
 }
 
 
-function recomendar(){
+function recomendarPerfume() {
 
-let elecciones=[];
+if (
+respuestas.ocasion === "" ||
+respuestas.aroma === "" ||
+respuestas.personalidad === ""
+) {
 
-if(respuestas.ocasion)
-elecciones.push(respuestas.ocasion);
+alert(
+"Elige una opción en cada pregunta para descubrir tu VERSE."
+);
 
-if(respuestas.aroma)
-elecciones.push(respuestas.aroma);
-
-if(respuestas.personalidad)
-elecciones.push(respuestas.personalidad);
-
-if(elecciones.length===0)
 return;
 
+}
 
-let resultados=productos.map(producto=>{
 
-let puntos=0;
+let mejorProducto = null;
 
-elecciones.forEach(eleccion=>{
+let mejorPuntaje = -1;
 
-puntos += producto.scores[eleccion] || 0;
+
+productos.forEach(producto => {
+
+let puntaje = 0;
+
+
+/* AROMA */
+
+if (
+respuestas.aroma === "fresco" &&
+producto.fresco
+) {
+
+puntaje += producto.fresco;
+
+}
+
+
+if (
+respuestas.aroma === "dulce" &&
+producto.dulce
+) {
+
+puntaje += producto.dulce;
+
+}
+
+
+if (
+respuestas.aroma === "amaderado" &&
+producto.amaderado
+) {
+
+puntaje += producto.amaderado;
+
+}
+
+
+if (
+respuestas.aroma === "intenso" &&
+producto.intenso
+) {
+
+puntaje += producto.intenso;
+
+}
+
+
+if (
+respuestas.aroma === "floral" &&
+producto.floral
+) {
+
+puntaje += producto.floral;
+
+}
+
+
+/* PERSONALIDAD */
+
+if (
+respuestas.personalidad === "seductor" &&
+producto.seductor
+) {
+
+puntaje += producto.seductor;
+
+}
+
+
+if (
+respuestas.personalidad === "llamativo" &&
+producto.intenso
+) {
+
+puntaje += producto.intenso;
+
+}
+
+
+if (
+respuestas.personalidad === "elegante" &&
+producto.amaderado
+) {
+
+puntaje += producto.amaderado;
+
+}
+
+
+if (
+respuestas.personalidad === "exclusivo" &&
+producto.intenso
+) {
+
+puntaje += producto.intenso;
+
+}
+
+
+if (
+respuestas.personalidad === "discreto" &&
+producto.fresco
+) {
+
+puntaje += producto.fresco;
+
+}
+
+
+/* OCASIÓN */
+
+if (
+respuestas.ocasion === "cita" &&
+producto.seductor
+) {
+
+puntaje += producto.seductor;
+
+}
+
+
+if (
+respuestas.ocasion === "fiesta" &&
+producto.intenso
+) {
+
+puntaje += producto.intenso;
+
+}
+
+
+if (
+respuestas.ocasion === "trabajo" &&
+producto.amaderado
+) {
+
+puntaje += producto.amaderado;
+
+}
+
+
+if (
+respuestas.ocasion === "dia" &&
+producto.fresco
+) {
+
+puntaje += producto.fresco;
+
+}
+
+
+if (
+respuestas.ocasion === "noche" &&
+producto.intenso
+) {
+
+puntaje += producto.intenso;
+
+}
+
+
+if (puntaje > mejorPuntaje) {
+
+mejorPuntaje = puntaje;
+
+mejorProducto = producto;
+
+}
 
 });
 
-return {
-producto,
-puntos
-};
+
+perfumeRecomendado =
+mejorProducto;
+
+
+document.getElementById("resultadoNombre")
+.textContent =
+mejorProducto.nombre;
+
+
+document.getElementById("resultadoDescripcion")
+.textContent =
+mejorProducto.descripcion;
+
+
+document.getElementById("resultadoPrecio")
+.textContent =
+"$" +
+mejorProducto.precio.toLocaleString("es-CO");
+
+
+document.getElementById("resultado")
+.style.display =
+"block";
+
+
+document.getElementById("resultado")
+.scrollIntoView({
+
+behavior: "smooth",
+
+block: "center"
 
 });
 
-
-resultados.sort((a,b)=>b.puntos-a.puntos);
-
-let mejor=resultados[0].producto;
+}
 
 
-document.getElementById("resultado").innerHTML=`
+function agregarRecomendado() {
 
-<div class="producto">
+if (!perfumeRecomendado) {
 
-<img src="${crearImagenProducto(
-mejor.nombre,
-mejor.genero
-)}">
+return;
 
-<div class="producto-info">
+}
 
-<h3>✨ Te recomendamos</h3>
 
-<h3>${mejor.nombre}</h3>
+const encontrado =
+carrito.find(
+producto =>
+producto.nombre ===
+perfumeRecomendado.nombre
+);
 
-<p>${mejor.descripcion}</p>
 
-<div class="precio">
-$${formatearPrecio(mejor.precio)}
-</div>
+if (encontrado) {
 
-<button
-class="comprar"
-onclick="agregarAlCarrito('${mejor.nombre}')"
->
+encontrado.cantidad++;
 
-AGREGAR AL CARRITO
+} else {
 
-</button>
+carrito.push({
 
-</div>
+...perfumeRecomendado,
 
-</div>
+cantidad: 1
 
-`;
+});
+
+}
+
+
+actualizarCarrito();
+
+abrirCarrito();
+
+}
+
+
+function verRecomendado() {
+
+if (!perfumeRecomendado) {
+
+return;
+
+}
+
+
+const indice =
+productos.indexOf(perfumeRecomendado);
+
+
+verPerfume(indice);
 
 }
 
 
 /* =========================
-   CATÁLOGO
+   CATALOGO
 ========================= */
 
-function mostrar(lista){
+function mostrar(lista) {
 
-const contenedor=
+const contenedor =
 document.getElementById("productos");
 
-contenedor.innerHTML="";
+contenedor.innerHTML = "";
 
 
-lista.forEach(producto=>{
+lista.forEach(producto => {
 
-const tarjeta=
-document.createElement("div");
-
-tarjeta.className="producto";
+const indice =
+productos.indexOf(producto);
 
 
-tarjeta.innerHTML=`
+contenedor.innerHTML += `
+
+<div class="producto">
 
 <img
-src="${crearImagenProducto(
-producto.nombre,
-producto.genero
-)}"
-alt="${producto.nombre}"
->
+src="${crearImagenProducto(producto.nombre, producto.genero)}"
+alt="${producto.nombre}">
 
-<div class="producto-info">
+<div class="contenido">
 
-<h3>${producto.nombre}</h3>
+<h3>
+${producto.nombre}
+</h3>
 
-<p>${producto.descripcion}</p>
+<p class="genero">
+${producto.genero}
+</p>
 
-<div class="precio">
-$${formatearPrecio(producto.precio)}
-</div>
+<p class="descripcion">
+${producto.descripcion}
+</p>
+
+<p class="precio">
+$${producto.precio.toLocaleString("es-CO")}
+</p>
 
 <button
-class="comprar"
-onclick="agregarAlCarrito('${producto.nombre}')"
->
+onclick="verPerfume(${indice})">
 
-AGREGAR AL CARRITO
+Ver perfume
 
 </button>
 
 </div>
 
+</div>
+
 `;
-
-
-contenedor.appendChild(tarjeta);
 
 });
 
 }
 
 
-function mostrarTodos(){
+function mostrarTodos() {
 
 mostrar(productos);
 
 }
 
 
-function mostrarMasculinos(){
+function mostrarMasculinos() {
 
 mostrar(
 productos.filter(
-producto=>producto.genero==="Masculino"
+producto =>
+producto.genero === "Masculino"
 )
 );
 
 }
 
 
-function mostrarFemeninos(){
+function mostrarFemeninos() {
 
 mostrar(
 productos.filter(
-producto=>producto.genero==="Femenino"
+producto =>
+producto.genero === "Femenino"
 )
 );
+
+}
+
+
+/* =========================
+   FICHA
+========================= */
+
+function verPerfume(index) {
+
+perfumeSeleccionado =
+productos[index];
+
+
+document.getElementById("fichaImagen").src =
+crearImagenProducto(perfumeSeleccionado.nombre, perfumeSeleccionado.genero);
+
+
+document.getElementById("fichaNombre").textContent =
+perfumeSeleccionado.nombre;
+
+
+document.getElementById("fichaGenero").textContent =
+perfumeSeleccionado.genero;
+
+
+document.getElementById("fichaDescripcion").textContent =
+perfumeSeleccionado.descripcion;
+
+
+document.getElementById("fichaPrecio").textContent =
+"$" +
+perfumeSeleccionado.precio.toLocaleString("es-CO");
+
+
+document.getElementById("ficha")
+.style.display =
+"flex";
+
+}
+
+
+function cerrarFicha() {
+
+document.getElementById("ficha")
+.style.display =
+"none";
 
 }
 
@@ -923,106 +1648,165 @@ producto=>producto.genero==="Femenino"
    CARRITO
 ========================= */
 
-function agregarAlCarrito(nombre){
+function agregarCarrito() {
 
-const producto=
-productos.find(
-p=>p.nombre===nombre
+const encontrado =
+carrito.find(
+producto =>
+producto.nombre ===
+perfumeSeleccionado.nombre
 );
 
-if(!producto)
-return;
 
-carrito.push(producto);
+if (encontrado) {
+
+encontrado.cantidad++;
+
+} else {
+
+carrito.push({
+
+...perfumeSeleccionado,
+
+cantidad: 1
+
+});
+
+}
+
 
 actualizarCarrito();
 
-alert(
-producto.nombre+
-" fue agregado al carrito."
-);
+cerrarFicha();
 
 }
 
 
-function actualizarCarrito(){
+function actualizarCarrito() {
 
-document.getElementById(
-"cantidadCarrito"
-).textContent=carrito.length;
+const contenedor =
+document.getElementById("productosCarrito");
 
-}
-
-
-function abrirCarrito(){
-
-const modal=
-document.getElementById("modalCarrito");
-
-modal.style.display="flex";
-
-mostrarCarrito();
-
-}
+contenedor.innerHTML = "";
 
 
-function cerrarCarrito(){
+let total = 0;
 
-document.getElementById(
-"modalCarrito"
-).style.display="none";
-
-}
+let cantidadTotal = 0;
 
 
-function mostrarCarrito(){
+carrito.forEach((producto, index) => {
 
-const lista=
-document.getElementById("listaCarrito");
-
-const total=
-document.getElementById("totalCarrito");
-
-lista.innerHTML="";
-
-let suma=0;
+const subtotal =
+producto.precio *
+producto.cantidad;
 
 
-if(carrito.length===0){
+total += subtotal;
 
-lista.innerHTML=
-"<p>Tu carrito está vacío.</p>";
-
-total.textContent="";
-
-return;
-
-}
+cantidadTotal +=
+producto.cantidad;
 
 
-carrito.forEach((producto,index)=>{
+contenedor.innerHTML += `
 
-suma+=producto.precio;
+<div class="producto-carrito">
 
-lista.innerHTML+=`
+<h3>
+${producto.nombre}
+</h3>
 
 <p>
-
-${index+1}.
-${producto.nombre}
--
-$${formatearPrecio(producto.precio)}
-
+$${producto.precio.toLocaleString("es-CO")}
 </p>
+
+<div class="cantidad">
+
+<button
+onclick="cambiarCantidad(${index}, -1)">
+−
+</button>
+
+<strong>
+${producto.cantidad}
+</strong>
+
+<button
+onclick="cambiarCantidad(${index}, 1)">
++
+</button>
+
+<button
+onclick="eliminarProducto(${index})">
+🗑️
+</button>
+
+</div>
+
+</div>
 
 `;
 
 });
 
 
-total.textContent=
-"Total: $"+
-formatearPrecio(suma);
+document.getElementById("totalCarrito")
+.textContent =
+"Total: $" +
+total.toLocaleString("es-CO");
+
+
+document.getElementById("cantidadCarrito")
+.textContent =
+cantidadTotal;
+
+}
+
+
+function cambiarCantidad(index, cambio) {
+
+carrito[index].cantidad += cambio;
+
+
+if (
+carrito[index].cantidad <= 0
+) {
+
+carrito.splice(index, 1);
+
+}
+
+
+actualizarCarrito();
+
+}
+
+
+function eliminarProducto(index) {
+
+carrito.splice(index, 1);
+
+actualizarCarrito();
+
+}
+
+
+function abrirCarrito() {
+
+actualizarCarrito();
+
+document.getElementById("carrito")
+.style.display =
+"flex";
+
+}
+
+
+function cerrarCarrito() {
+
+document.getElementById("carrito")
+.style.display =
+"none";
 
 }
 
@@ -1031,9 +1815,9 @@ formatearPrecio(suma);
    WHATSAPP
 ========================= */
 
-function enviarPedidoWhatsApp(){
+function pedirPorWhatsApp() {
 
-if(carrito.length===0){
+if (carrito.length === 0) {
 
 alert("Tu carrito está vacío.");
 
@@ -1042,102 +1826,121 @@ return;
 }
 
 
-const nombre=
-document.getElementById(
-"nombreCliente"
-).value.trim();
+document.getElementById("datosCliente")
+.style.display =
+"block";
 
-const direccion=
-document.getElementById(
-"direccionCliente"
-).value.trim();
-
-const pago=
-document.getElementById(
-"pagoCliente"
-).value;
+}
 
 
-if(!nombre){
+function enviarPedidoWhatsApp() {
 
-alert("Escribe tu nombre.");
+const nombre =
+document
+.getElementById("nombreCliente")
+.value
+.trim();
+
+
+const direccion =
+document
+.getElementById("direccionCliente")
+.value
+.trim();
+
+
+const pago =
+document
+.getElementById("pagoCliente")
+.value;
+
+
+if (
+nombre === "" ||
+direccion === "" ||
+pago === ""
+) {
+
+alert(
+"Por favor completa todos los datos."
+);
 
 return;
 
 }
 
-if(!direccion){
 
-alert("Escribe tu dirección.");
+/* NÚMERO DE VERSE */
 
-return;
-
-}
-
-if(!pago){
-
-alert("Selecciona una forma de pago.");
-
-return;
-
-}
+const numero =
+"573169031445";
 
 
-let mensaje=
-"Hola VERSE 👋%0A%0A";
-
-mensaje+=
-"*Nuevo pedido*%0A%0A";
-
-mensaje+=
-"*Cliente:* "+
-encodeURIComponent(nombre)+
-"%0A";
-
-mensaje+=
-"*Dirección:* "+
-encodeURIComponent(direccion)+
-"%0A";
-
-mensaje+=
-"*Forma de pago:* "+
-encodeURIComponent(pago)+
-"%0A%0A";
-
-mensaje+="*Productos:*%0A";
+let mensaje =
+"Hola, quiero hacer un pedido en VERSE.\n\n";
 
 
-let total=0;
+mensaje +=
+"👤 Nombre: " +
+nombre +
+"\n";
 
 
-carrito.forEach(producto=>{
+mensaje +=
+"📍 Dirección: " +
+direccion +
+"\n";
 
-mensaje+=
-"• "+
-encodeURIComponent(producto.nombre)+
-" - $"+
-producto.precio+
-"%0A";
 
-total+=producto.precio;
+mensaje +=
+"💳 Forma de pago: " +
+pago +
+"\n\n";
+
+
+mensaje +=
+"🛍️ PRODUCTOS:\n";
+
+
+let total = 0;
+
+
+carrito.forEach(producto => {
+
+const subtotal =
+producto.precio *
+producto.cantidad;
+
+
+total += subtotal;
+
+
+mensaje +=
+"• " +
+producto.nombre +
+" x" +
+producto.cantidad +
+" - $" +
+subtotal.toLocaleString("es-CO") +
+"\n";
 
 });
 
 
-mensaje+=
-"%0A*Total:* $"+
-total;
+mensaje +=
+"\n💰 TOTAL: $" +
+total.toLocaleString("es-CO");
 
 
-const telefono=
-"573169031445";
+const url =
+"https://wa.me/" +
+numero +
+"?text=" +
+encodeURIComponent(mensaje);
 
 
 window.open(
-"https://wa.me/"+
-telefono+
-"?text="+
-mensaje,
+url,
 "_blank"
 );
 
@@ -1145,36 +1948,14 @@ mensaje,
 
 
 /* =========================
-   PRECIO
+   INICIO
 ========================= */
 
-function formatearPrecio(numero){
-
-return numero.toLocaleString(
-"es-CO"
-);
-
-}
-
-
-/* =========================
-   INICIAR
-========================= */
-
-productos.forEach(producto=>{
-
-producto.imagen=
-crearImagenProducto(
-producto.nombre,
-producto.genero
-);
-
-});
-
-
-mostrarTodos();
+document.addEventListener("DOMContentLoaded", mostrarTodos);
 
 </script>
 
+
 </body>
+
 </html>
